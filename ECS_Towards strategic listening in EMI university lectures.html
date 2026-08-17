@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <title>Strategic Listening in EMI · Sihan Zhou</title>
+  <meta name="description" content="Project page: Towards strategic listening in EMI university lectures." />
+  <link rel="stylesheet" href="assets/style.css?v=35" />
+  <style>
+    .page-research .grant-card {
+      background: rgba(255, 254, 250, 0.78);
+      border: 1px solid var(--line, rgba(40, 40, 34, 0.14));
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+      overflow: hidden;
+    }
+
+    .page-research .grant-card-body {
+      padding: 14px 16px 16px;
+    }
+
+    .page-research .grant-card-body p {
+      margin: 0 0 0.8rem 0;
+      line-height: 1.6;
+      color: #1e2a3a;
+    }
+
+    .page-research .grant-card-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .title-wrapper {
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 22px;
+      margin-bottom: 26px;
+    }
+
+    .title-wrapper .title-line {
+      font-size: 1.8rem;
+      line-height: 1.3;
+      font-family: "Source Serif 4", ui-serif, Georgia, "Times New Roman", Times, serif;
+      font-weight: 700;
+      color: #1a2b3c;
+      display: inline;
+    }
+
+    .title-wrapper .status-badge {
+      display: inline-block;
+      background: #DDEFD4 !important;
+      color: #3d5a2a !important;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      padding: 0px 10px;
+      border-radius: 999px;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      white-space: nowrap;
+      line-height: 1.8;
+      vertical-align: middle;
+      margin-left: 6px;
+      text-transform: none;
+      height: 24px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 0;
+    }
+
+    .plain-body {
+      padding: 14px 16px 16px;
+    }
+
+    .plain-body p {
+      margin: 0 0 0.8rem 0;
+      line-height: 1.6;
+      color: #1e2a3a;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .plain-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-title-sm {
+      font-size: 1.25rem !important;
+      font-weight: 600;
+      margin: 0 !important;
+      padding: 12px 16px;
+      background: rgba(91, 102, 81, 0.15);
+      border-bottom: 1px solid rgba(91, 102, 81, 0.18);
+      color: #273128;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.42;
+      font-family: "Source Serif 4", ui-serif, Georgia, "Times New Roman", Times, serif;
+    }
+
+    .funder-link {
+      color: #1a2b3c;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 1rem;
+    }
+
+    .funder-link:hover {
+      text-decoration: underline;
+      text-decoration-color: rgba(26, 43, 60, 0.3);
+      text-underline-offset: 2px;
+    }
+
+    .publication-list {
+      display: grid;
+      gap: 0;
+      border: 1px solid var(--line, rgba(40, 40, 34, 0.14));
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255, 254, 250, 0.72);
+    }
+
+    .publication-list .pub {
+      padding: 16px 20px;
+      border-top: 1px solid var(--line, rgba(40, 40, 34, 0.14));
+      transition: background 0.15s ease;
+    }
+
+    .publication-list .pub:first-child {
+      border-top: 0;
+    }
+
+    .publication-list .pub:hover {
+      background: rgba(255, 254, 250, 0.90);
+    }
+
+    .pub h4 {
+      margin: 0 0 4px 0;
+      font-size: 1.03rem;
+      line-height: 1.45;
+      font-weight: 700;
+      color: #1a2b3c;
+    }
+
+    .pub h4 a {
+      color: #1a2b3c;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .pub h4 a:hover {
+      text-decoration: underline;
+      text-decoration-color: rgba(26, 43, 60, 0.3);
+      text-underline-offset: 2px;
+    }
+
+    .pub-authors {
+      margin: 0;
+      color: #6f726f;
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
+
+    .pub-source {
+      margin: 0;
+      color: #6f726f;
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
+
+    .pub-source em {
+      color: #4f534f;
+      font-style: italic;
+    }
+
+    .pub-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 78, 72, 0.14);
+      background: rgba(91, 96, 88, 0.09);
+      color: #50544f;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .tag.q1 {
+      border-color: rgba(73, 112, 76, 0.22);
+      background: rgba(83, 127, 86, 0.14);
+      color: #3f6843;
+    }
+
+    .tag.if {
+      border-color: rgba(153, 118, 48, 0.22);
+      background: rgba(185, 145, 65, 0.15);
+      color: #75591f;
+    }
+
+    .author-bold {
+      font-weight: 700;
+    }
+
+    .highlight-bold {
+      font-weight: 700;
+    }
+
+    .sub-card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #5b6651;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 700;
+      transition: color 0.2s, transform 0.2s;
+      margin-bottom: 16px;
+    }
+
+    .back-button:hover {
+      color: #3d4a38;
+      transform: translateX(-3px);
+      text-decoration: underline;
+      text-decoration-color: rgba(26, 43, 60, 0.3);
+      text-underline-offset: 2px;
+    }
+
+    .back-button svg {
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .back-button:hover svg {
+      transform: translateX(-3px);
+    }
+
+    /* Related Projects 卡片 - 与 research.html 效果一致 */
+    .related-project-item {
+      display: block;
+      padding: 16px 20px;
+      border: 1px solid rgba(40, 40, 34, 0.10);
+      border-radius: 8px;
+      background: rgba(255, 254, 250, 0.60);
+      transition: background 0.2s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      text-decoration: none !important;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .related-project-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #5b6651;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .related-project-item:hover::before {
+      opacity: 1;
+    }
+
+    .related-project-item:hover {
+      background: rgba(255, 254, 250, 0.90);
+      transform: translateX(4px);
+      box-shadow: 0 12px 32px rgba(16, 24, 40, 0.12);
+      border-color: rgba(91, 102, 81, 0.25);
+    }
+
+    /* 标题：悬停时灰色下划线 */
+    .related-project-item .rp-title {
+      font-size: 1.03rem;
+      font-weight: 700;
+      color: #1a2b3c;
+      font-family: "Source Serif 4", ui-serif, Georgia, "Times New Roman", Times, serif;
+      margin-bottom: 4px;
+      transition: color 0.2s ease;
+      text-decoration: none !important;
+    }
+
+    .related-project-item:hover .rp-title {
+      color: #3d4a38;
+      text-decoration: underline !important;
+      text-decoration-color: rgba(26, 43, 60, 0.3) !important;
+      text-underline-offset: 2px;
+    }
+
+    /* 基金名称：永远无下划线 */
+    .related-project-item .rp-funder {
+      color: #6f726f;
+      font-size: 0.92rem;
+      margin: 0 0 4px 0;
+      text-decoration: none !important;
+    }
+
+    .related-project-item:hover .rp-funder {
+      text-decoration: none !important;
+    }
+
+    /* 年份和金额：永远无下划线 */
+    .related-project-item .rp-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 18px;
+      color: #8a8f8a;
+      font-size: 0.88rem;
+      text-decoration: none !important;
+    }
+
+    .related-project-item:hover .rp-details {
+      text-decoration: none !important;
+    }
+
+    .related-project-item .rp-details span {
+      text-decoration: none !important;
+    }
+
+    .related-project-item:hover .rp-details span {
+      text-decoration: none !important;
+    }
+
+    .related-project-item .rp-details span + span::before {
+      content: "·";
+      margin-right: 18px;
+      color: rgba(91, 102, 81, 0.40);
+    }
+
+    @media (max-width: 600px) {
+      .title-wrapper .title-line {
+        font-size: 1.4rem;
+      }
+      .title-wrapper .status-badge {
+        font-size: 0.65rem;
+        padding: 0px 8px;
+        height: 20px;
+        line-height: 1.6;
+        margin-left: 4px;
+      }
+      .page-research .grant-card-body {
+        padding: 0 1rem 1.2rem 1rem;
+      }
+      .card-title-sm {
+        font-size: 1.1rem !important;
+        padding: 0.6rem 1rem 0.2rem 1rem;
+      }
+      .publication-list .pub {
+        padding: 12px 14px;
+      }
+      .pub h4 {
+        font-size: 0.95rem;
+        margin: 0 0 3px 0;
+      }
+      .pub-authors {
+        font-size: 0.88rem;
+      }
+      .pub-source {
+        font-size: 0.88rem;
+      }
+      .funder-link {
+        font-size: 0.95rem;
+      }
+      .tag {
+        font-size: 0.65rem;
+        padding: 1px 6px;
+        min-height: 20px;
+      }
+      .related-project-item {
+        padding: 12px 14px;
+      }
+      .related-project-item .rp-title {
+        font-size: 0.95rem;
+      }
+      .related-project-item .rp-details span + span::before {
+        content: "";
+        margin-right: 0;
+      }
+      .related-project-item .rp-details {
+        display: grid;
+        gap: 2px;
+      }
+      .back-button {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body class="page-research">
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <a href="index.html">Sihan Zhou</a>
+    </div>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-top" href="index.html">Home</a>
+      <div class="nav-group">
+        <a class="nav-top active" href="research.html">Research</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open Research menu"></button>
+        <div class="dropdown-menu">
+          <a href="research.html#projects-grants">Projects &amp; Grants</a>
+          <a href="research.html#research-in-motion">Research in Motion</a>
+          <a href="research.html#invited-talks">Invited Talks</a>
+          <a href="research.html#conference-presentations">Selected Conference Presentations</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="nav-top" href="publications.html">Publications</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open Publications menu"></button>
+        <div class="dropdown-menu">
+          <a href="publications.html#featured-publications">Featured Publications</a>
+          <a href="publications.html#selected-publications-by-topic">Publications by Topic</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="nav-top" href="teaching.html">Teaching</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open Teaching menu"></button>
+        <div class="dropdown-menu">
+          <a href="teaching.html#courses-teaching">Courses Teaching</a>
+          <a href="teaching.html#photo-gallery">Photo Gallery</a>
+          <a href="teaching.html#guest-lecturers">Guest Lecturers Hosted in Taught Courses</a>
+          <a href="teaching.html#supervision">Supervision</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="nav-top" href="outreach.html">Outreach</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open Outreach menu"></button>
+        <div class="dropdown-menu">
+          <a href="outreach.html#knowledge-transfer">Knowledge Transfer</a>
+          <a href="outreach.html#event-organization">Event Organization</a>
+          <a href="outreach.html#academic-talks-hosted">Academic Talks Hosted at the Chinese University of Hong Kong</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="nav-top" href="service.html">Service</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open Service menu"></button>
+        <div class="dropdown-menu">
+          <a href="service.html#professional-roles">Professional Roles</a>
+          <a href="service.html#selected-external-services">Selected External Services</a>
+          <a href="service.html#selected-internal-services">Selected Service to University and College</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <a href="research.html" class="back-button">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+    Back to Research
+  </a>
+
+  <div class="title-wrapper">
+    <span class="title-line">Towards strategic listening in EMI university lectures: A longitudinal cross-disciplinary investigation of students' self-regulated listening</span>
+    <span class="status-badge">On-going</span>
+  </div>
+
+  <div class="card-container">
+
+    <article class="grant-card grant-card-structured">
+      <h2 class="card-title-sm">Project Abstract</h2>
+      <div class="plain-body">
+        <p><span class="highlight-bold">English as a medium of instruction (EMI)</span> is expanding in higher education globally. However, for non‑native students, comprehending academic disciplinary knowledge in EMI university lectures often results in cognitive overload and shallow understanding. This difficulty is especially acute during initial transition, as students must cope with both an unfamiliar instructional language and more intellectually demanding content. Consequently, students urgently need to <span class="highlight-bold">develop self‑regulated listening skills</span>. Investigating their strategy use through cross‑disciplinary comparison can reveal how strategic listening supports comprehension in relation to characteristics of disciplinary knowledge building. This study aims to investigate students' <span class="highlight-bold">self‑regulated lecture listening</span> and its <span class="highlight-bold">longitudinal transformation across academic disciplines</span> throughout their first EMI year.</p>
+        <p>Adopting a <span class="highlight-bold">social cognitive framework of self‑regulated listening</span>, the research situates strategy use within disciplinary contexts and associates it with socially constructed learning motivation, addressing the gap left by generic or cross‑sectional studies. A <span class="highlight-bold">longitudinal mixed‑methods design</span> combines questionnaires and interviews to capture variations across disciplines and over time. Theoretically, the study extends knowledge about the evolving, discipline‑specific features of strategic behaviour, offering a dynamic perspective on academic literacy development. Practically, it will <span class="highlight-bold">inform evidence‑based language support programs</span> to scaffold students' successful transition into EMI university studies. <span class="highlight-bold">The study will inform the 'bigger picture'</span> of cultivating students' strategic, self‑regulated lecture listening as a key academic literacy in EMI higher education.</p>
+      </div>
+    </article>
+
+    <article class="grant-card grant-card-structured">
+      <h2 class="card-title-sm">Funder Information</h2>
+      <div class="plain-body">
+        <p>
+          <a href="https://cerg1.ugc.edu.hk/cergprod/scrrm00542.jsp?proj_id=24611824&old_proj_id=null&proj_title=&isname=&ioname=&institution=&subject=&pages=1&year=2024&theSubmit=24611824" 
+             target="_blank" rel="noopener noreferrer" 
+             class="funder-link">
+            Funded by the Research Grants Council of Hong Kong, Early Career Scheme (HKD$ 617,680; Ref. 24611824).
+          </a>
+        </p>
+      </div>
+    </article>
+
+    <article class="grant-card grant-card-structured">
+      <h2 class="card-title-sm">Research Output</h2>
+      <div class="grant-card-body">
+        <div class="publication-list">
+
+          <article class="pub">
+            <h4><a href="https://doi.org/10.1016/j.lindif.2025.102628" target="_blank" rel="noopener noreferrer">Exploring the emotion-motivation nexus in English-medium higher education: A longitudinal mixed-methods study</a></h4>
+            <p class="pub-authors"><strong>Zhou, S.</strong>, Xu, J., Rose, H., &amp; McKinley, J. (2025).</p>
+            <p class="pub-source"><em>Learning and Individual Differences, 119</em>, 102628.</p>
+            <div class="pub-tags"><span class="tag q1">Q1</span><span class="tag if">IF 9.7</span></div>
+          </article>
+
+          <article class="pub">
+            <h4><a href="https://doi.org/10.1016/j.system.2025.103856" target="_blank" rel="noopener noreferrer">Can emotion regulation pave the way to academic buoyancy? Evidence from Chinese university students in EMI programs</a></h4>
+            <p class="pub-authors">Peng, Y., &amp; <strong>Zhou, S.</strong> (2025).</p>
+            <p class="pub-source"><em>System, 135</em>, 103856.</p>
+            <div class="pub-tags"><span class="tag q1">Q1</span><span class="tag if">IF 8.0</span></div>
+          </article>
+
+          <article class="pub">
+            <h4><a href="https://doi.org/10.1016/j.jeap.2025.101582" target="_blank" rel="noopener noreferrer">Empowering academic communication in EMI higher education: Understanding the role of social-emotional need satisfaction in motivation and willingness to communicate</a></h4>
+            <p class="pub-authors"><strong>Zhou, S.</strong> (2025).</p>
+            <p class="pub-source"><em>Journal of English for Academic Purposes, 78</em>, 101582.</p>
+            <div class="pub-tags"><span class="tag q1">Q1</span><span class="tag if">IF 3.7</span></div>
+          </article>
+
+        </div>
+      </div>
+    </article>
+
+    <article class="grant-card grant-card-structured">
+      <h2 class="card-title-sm">Resource Package</h2>
+      <div class="grant-card-body">
+        <ul class="sub-card-list" style="list-style:none; padding:0; margin:0;">
+          <li style="padding:0; border:1px solid var(--line, rgba(40,40,34,0.14)); border-radius:8px; background:rgba(255,254,250,0.60); margin:0 0 0.75rem 0; overflow:hidden;">
+            <div style="display:flex; align-items:stretch;">
+              <div style="width:4px; background:#47675e; flex-shrink:0;"></div>
+              <div style="padding:14px 16px; flex:1;">
+                <a href="#" style="display:block; color:#8a6f4d; text-decoration:none; font-weight:600; line-height:1.5; font-size:1rem; font-family:'Source Serif 4', ui-serif, Georgia, 'Times New Roman', Times, serif; margin-bottom:4px;">
+                  <span style="font-weight:700; margin-right:4px;">01</span> EMI self-regulated listening strategy checklist
+                </a>
+                <p style="margin:0; color:#6f726f; font-size:0.92rem; line-height:1.5; font-family:Inter, ui-sans-serif, system-ui, sans-serif;">A practical checklist for students to self-assess their listening strategy use in EMI lectures.</p>
+              </div>
+            </div>
+          </li>
+          <li style="padding:0; border:1px solid var(--line, rgba(40,40,34,0.14)); border-radius:8px; background:rgba(255,254,250,0.60); margin:0 0 0.75rem 0; overflow:hidden;">
+            <div style="display:flex; align-items:stretch;">
+              <div style="width:4px; background:#47675e; flex-shrink:0;"></div>
+              <div style="padding:14px 16px; flex:1;">
+                <a href="#" style="display:block; color:#8a6f4d; text-decoration:none; font-weight:600; line-height:1.5; font-size:1rem; font-family:'Source Serif 4', ui-serif, Georgia, 'Times New Roman', Times, serif; margin-bottom:4px;">
+                  <span style="font-weight:700; margin-right:4px;">02</span> E-manual for strategy use
+                </a>
+                <p style="margin:0; color:#6f726f; font-size:0.92rem; line-height:1.5; font-family:Inter, ui-sans-serif, system-ui, sans-serif;">An interactive e-manual guiding students on how to apply strategies for effective lecture listening.</p>
+              </div>
+            </div>
+          </li>
+          <li style="padding:0; border:1px solid var(--line, rgba(40,40,34,0.14)); border-radius:8px; background:rgba(255,254,250,0.60); margin:0; overflow:hidden;">
+            <div style="display:flex; align-items:stretch;">
+              <div style="width:4px; background:#47675e; flex-shrink:0;"></div>
+              <div style="padding:14px 16px; flex:1;">
+                <a href="#" style="display:block; color:#8a6f4d; text-decoration:none; font-weight:600; line-height:1.5; font-size:1rem; font-family:'Source Serif 4', ui-serif, Georgia, 'Times New Roman', Times, serif; margin-bottom:4px;">
+                  <span style="font-weight:700; margin-right:4px;">03</span> Self-evaluation form of strategy use
+                </a>
+                <p style="margin:0; color:#6f726f; font-size:0.92rem; line-height:1.5; font-family:Inter, ui-sans-serif, system-ui, sans-serif;">A self-evaluation form for students to reflect on and assess their strategy use and progress.</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="grant-card grant-card-structured">
+      <h2 class="card-title-sm">Related Projects</h2>
+      <div class="grant-card-body">
+        <a href="#" class="related-project-item">
+          <div class="rp-title">Orchestrating listening in EMI university lectures: A multimodal perspective of students' strategic lecture comprehension</div>
+          <p class="rp-funder">Research Grants Council, General Research Fund</p>
+          <div class="rp-details">
+            <span>2026–2028</span>
+            <span>$489,740 HKD</span>
+          </div>
+        </a>
+      </div>
+    </article>
+
+  </div>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> Sihan Zhou.</div>
+  </footer>
+</main>
+
+<script src="assets/site.js?v=17"></script>
+</body>
+</html>
