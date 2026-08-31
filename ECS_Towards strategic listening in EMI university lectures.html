@@ -88,6 +88,7 @@
       margin-bottom: 0;
     }
 
+    /* 卡片标题 - 可点击折叠 */
     .card-title-sm {
       font-size: 1.25rem !important;
       font-weight: 600;
@@ -100,6 +101,34 @@
       font-weight: 700;
       line-height: 1.42;
       font-family: "Source Serif 4", ui-serif, Georgia, "Times New Roman", Times, serif;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .card-title-sm .topic-chevron {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border-right: 2px solid #5b6651;
+      border-bottom: 2px solid #5b6651;
+      transform: rotate(45deg) translateY(-3px);
+      transition: transform 180ms ease;
+      flex-shrink: 0;
+    }
+
+    .card-title-sm .topic-chevron.open {
+      transform: rotate(225deg) translate(-2px, -1px);
+    }
+
+    .toggle-content {
+      display: none;
+    }
+
+    .toggle-content.open {
+      display: block;
     }
 
     .funder-link {
@@ -214,10 +243,6 @@
       font-weight: 700;
     }
 
-    .highlight-bold {
-      font-weight: 700;
-    }
-
     .sub-card-list {
       display: flex;
       flex-direction: column;
@@ -256,7 +281,7 @@
       transform: translateX(-3px);
     }
 
-    /* Related Projects 卡片 - 与 research.html 效果一致 */
+    /* Related Projects 卡片 */
     .related-project-item {
       display: block;
       padding: 16px 20px;
@@ -312,7 +337,7 @@
       text-underline-offset: 2px;
     }
 
-    /* 基金名称：永远无下划线 */
+    /* grant无下划线 */
     .related-project-item .rp-funder {
       color: #6f726f;
       font-size: 0.92rem;
@@ -324,7 +349,7 @@
       text-decoration: none !important;
     }
 
-    /* 年份和金额：永远无下划线 */
+    /* Year无下划线 */
     .related-project-item .rp-details {
       display: flex;
       flex-wrap: wrap;
@@ -485,16 +510,18 @@
 
   <div class="card-container">
 
+    <!-- 卡片1：Project Abstract（左对齐） -->
     <article class="grant-card grant-card-structured">
-      <h2 class="card-title-sm">Project Abstract</h2>
+      <h2 class="card-title-sm" style="cursor:default;">Project Abstract</h2>
       <div class="plain-body">
-        <p><span class="highlight-bold">English as a medium of instruction (EMI)</span> is expanding in higher education globally. However, for non‑native students, comprehending academic disciplinary knowledge in EMI university lectures often results in cognitive overload and shallow understanding. This difficulty is especially acute during initial transition, as students must cope with both an unfamiliar instructional language and more intellectually demanding content. Consequently, students urgently need to <span class="highlight-bold">develop self‑regulated listening skills</span>. Investigating their strategy use through cross‑disciplinary comparison can reveal how strategic listening supports comprehension in relation to characteristics of disciplinary knowledge building. This study aims to investigate students' <span class="highlight-bold">self‑regulated lecture listening</span> and its <span class="highlight-bold">longitudinal transformation across academic disciplines</span> throughout their first EMI year.</p>
-        <p>Adopting a <span class="highlight-bold">social cognitive framework of self‑regulated listening</span>, the research situates strategy use within disciplinary contexts and associates it with socially constructed learning motivation, addressing the gap left by generic or cross‑sectional studies. A <span class="highlight-bold">longitudinal mixed‑methods design</span> combines questionnaires and interviews to capture variations across disciplines and over time. Theoretically, the study extends knowledge about the evolving, discipline‑specific features of strategic behaviour, offering a dynamic perspective on academic literacy development. Practically, it will <span class="highlight-bold">inform evidence‑based language support programs</span> to scaffold students' successful transition into EMI university studies. <span class="highlight-bold">The study will inform the 'bigger picture'</span> of cultivating students' strategic, self‑regulated lecture listening as a key academic literacy in EMI higher education.</p>
+        <p>English as a medium of instruction (EMI) is expanding in higher education globally. However, for non‑native students, comprehending academic disciplinary knowledge in EMI university lectures often results in cognitive overload and shallow understanding. This difficulty is especially acute during initial transition, as students must cope with both an unfamiliar instructional language and more intellectually demanding content. Consequently, students urgently need to develop self‑regulated listening skills. Investigating their strategy use through cross‑disciplinary comparison can reveal how strategic listening supports comprehension in relation to characteristics of disciplinary knowledge building. This study aims to investigate students' self‑regulated lecture listening and its longitudinal transformation across academic disciplines throughout their first EMI year.</p>
+        <p>Adopting a social cognitive framework of self‑regulated listening, the research situates strategy use within disciplinary contexts and associates it with socially constructed learning motivation, addressing the gap left by generic or cross‑sectional studies. A longitudinal mixed‑methods design combines questionnaires and interviews to capture variations across disciplines and over time. Theoretically, the study extends knowledge about the evolving, discipline‑specific features of strategic behaviour, offering a dynamic perspective on academic literacy development. Practically, it will inform evidence‑based language support programs to scaffold students' successful transition into EMI university studies. The study will inform the 'bigger picture' of cultivating students' strategic, self‑regulated lecture listening as a key academic literacy in EMI higher education.</p>
       </div>
     </article>
 
+    <!-- 卡片2：Funder Information（左对齐） -->
     <article class="grant-card grant-card-structured">
-      <h2 class="card-title-sm">Funder Information</h2>
+      <h2 class="card-title-sm" style="cursor:default;">Funder Information</h2>
       <div class="plain-body">
         <p>
           <a href="https://cerg1.ugc.edu.hk/cergprod/scrrm00542.jsp?proj_id=24611824&old_proj_id=null&proj_title=&isname=&ioname=&institution=&subject=&pages=1&year=2024&theSubmit=24611824" 
@@ -506,88 +533,106 @@
       </div>
     </article>
 
+    <!-- 卡片3：Research Output（可折叠） -->
     <article class="grant-card grant-card-structured">
-      <h2 class="card-title-sm">Research Output</h2>
-      <div class="grant-card-body">
-        <div class="publication-list">
+      <h2 class="card-title-sm" onclick="toggleContent(this)">
+        <span>Research Output</span>
+        <span class="topic-chevron" aria-hidden="true"></span>
+      </h2>
+      <div class="toggle-content" id="researchOutputContent">
+        <div class="grant-card-body">
+          <div class="publication-list">
 
-          <article class="pub">
-            <h4><a href="https://doi.org/10.1016/j.lindif.2025.102628" target="_blank" rel="noopener noreferrer">Exploring the emotion-motivation nexus in English-medium higher education: A longitudinal mixed-methods study</a></h4>
-            <p class="pub-authors"><strong>Zhou, S.</strong>, Xu, J., Rose, H., &amp; McKinley, J. (2025).</p>
-            <p class="pub-source"><em>Learning and Individual Differences, 119</em>, 102628.</p>
-            <div class="pub-tags"><span class="tag q1">Q1</span><span class="tag if">IF 9.7</span></div>
-          </article>
+            <article class="pub">
+              <h4><a href="https://doi.org/10.1016/j.lindif.2025.102628" target="_blank" rel="noopener noreferrer">Exploring the emotion-motivation nexus in English-medium higher education: A longitudinal mixed-methods study</a></h4>
+              <p class="pub-authors"><strong>Zhou, S.</strong>, Xu, J., Rose, H., &amp; McKinley, J. (2025).</p>
+              <p class="pub-source"><em>Learning and Individual Differences, 119</em>, 102628.</p>
+              <div class="pub-tags"><span class="tag q1">Q1</span><span class="tag if">IF 9.7</span></div>
+            </article>
 
-          <article class="pub">
-            <h4><a href="https://doi.org/10.1016/j.system.2025.103856" target="_blank" rel="noopener noreferrer">Can emotion regulation pave the way to academic buoyancy? Evidence from Chinese university students in EMI programs</a></h4>
-            <p class="pub-authors">Peng, Y., &amp; <strong>Zhou, S.</strong> (2025).</p>
-            <p class="pub-source"><em>System, 135</em>, 103856.</p>
-            <div class="pub-tags"><span class="tag q1">Q1</span><span class="tag if">IF 8.0</span></div>
-          </article>
+            <article class="pub">
+              <h4><a href="https://doi.org/10.1016/j.system.2025.103856" target="_blank" rel="noopener noreferrer">Can emotion regulation pave the way to academic buoyancy? Evidence from Chinese university students in EMI programs</a></h4>
+              <p class="pub-authors">Peng, Y., &amp; <strong>Zhou, S.</strong> (2025).</p>
+              <p class="pub-source"><em>System, 135</em>, 103856.</p>
+              <div class="pub-tags"><span class="tag q1">Q1</span><span class="tag if">IF 8.0</span></div>
+            </article>
 
-          <article class="pub">
-            <h4><a href="https://doi.org/10.1016/j.jeap.2025.101582" target="_blank" rel="noopener noreferrer">Empowering academic communication in EMI higher education: Understanding the role of social-emotional need satisfaction in motivation and willingness to communicate</a></h4>
-            <p class="pub-authors"><strong>Zhou, S.</strong> (2025).</p>
-            <p class="pub-source"><em>Journal of English for Academic Purposes, 78</em>, 101582.</p>
-            <div class="pub-tags"><span class="tag q1">Q1</span><span class="tag if">IF 3.7</span></div>
-          </article>
+            <article class="pub">
+              <h4><a href="https://doi.org/10.1016/j.jeap.2025.101582" target="_blank" rel="noopener noreferrer">Empowering academic communication in EMI higher education: Understanding the role of social-emotional need satisfaction in motivation and willingness to communicate</a></h4>
+              <p class="pub-authors"><strong>Zhou, S.</strong> (2025).</p>
+              <p class="pub-source"><em>Journal of English for Academic Purposes, 78</em>, 101582.</p>
+              <div class="pub-tags"><span class="tag q1">Q1</span><span class="tag if">IF 3.7</span></div>
+            </article>
 
+          </div>
         </div>
       </div>
     </article>
 
+    <!-- 卡片4：Resource Package（折叠） -->
     <article class="grant-card grant-card-structured">
-      <h2 class="card-title-sm">Resource Package</h2>
-      <div class="grant-card-body">
-        <ul class="sub-card-list" style="list-style:none; padding:0; margin:0;">
-          <li style="padding:0; border:1px solid var(--line, rgba(40,40,34,0.14)); border-radius:8px; background:rgba(255,254,250,0.60); margin:0 0 0.75rem 0; overflow:hidden;">
-            <div style="display:flex; align-items:stretch;">
-              <div style="width:4px; background:#47675e; flex-shrink:0;"></div>
-              <div style="padding:14px 16px; flex:1;">
-                <a href="#" style="display:block; color:#8a6f4d; text-decoration:none; font-weight:600; line-height:1.5; font-size:1rem; font-family:'Source Serif 4', ui-serif, Georgia, 'Times New Roman', Times, serif; margin-bottom:4px;">
-                  <span style="font-weight:700; margin-right:4px;">01</span> EMI self-regulated listening strategy checklist
-                </a>
-                <p style="margin:0; color:#6f726f; font-size:0.92rem; line-height:1.5; font-family:Inter, ui-sans-serif, system-ui, sans-serif;">A practical checklist for students to self-assess their listening strategy use in EMI lectures.</p>
+      <h2 class="card-title-sm" onclick="toggleContent(this)">
+        <span>Resource Package</span>
+        <span class="topic-chevron" aria-hidden="true"></span>
+      </h2>
+      <div class="toggle-content" id="resourcePackageContent">
+        <div class="grant-card-body">
+          <ul class="sub-card-list" style="list-style:none; padding:0; margin:0;">
+            <li style="padding:0; border:1px solid var(--line, rgba(40,40,34,0.14)); border-radius:8px; background:rgba(255,254,250,0.60); margin:0 0 0.75rem 0; overflow:hidden;">
+              <div style="display:flex; align-items:stretch;">
+                <div style="width:4px; background:#47675e; flex-shrink:0;"></div>
+                <div style="padding:14px 16px; flex:1;">
+                  <a href="#" style="display:block; color:#8a6f4d; text-decoration:none; font-weight:600; line-height:1.5; font-size:1rem; font-family:'Source Serif 4', ui-serif, Georgia, 'Times New Roman', Times, serif; margin-bottom:4px;">
+                    <span style="font-weight:700; margin-right:4px;">01</span> EMI self-regulated listening strategy checklist
+                  </a>
+                  <p style="margin:0; color:#6f726f; font-size:0.92rem; line-height:1.5; font-family:Inter, ui-sans-serif, system-ui, sans-serif;">A practical checklist for students to self-assess their listening strategy use in EMI lectures.</p>
+                </div>
               </div>
-            </div>
-          </li>
-          <li style="padding:0; border:1px solid var(--line, rgba(40,40,34,0.14)); border-radius:8px; background:rgba(255,254,250,0.60); margin:0 0 0.75rem 0; overflow:hidden;">
-            <div style="display:flex; align-items:stretch;">
-              <div style="width:4px; background:#47675e; flex-shrink:0;"></div>
-              <div style="padding:14px 16px; flex:1;">
-                <a href="#" style="display:block; color:#8a6f4d; text-decoration:none; font-weight:600; line-height:1.5; font-size:1rem; font-family:'Source Serif 4', ui-serif, Georgia, 'Times New Roman', Times, serif; margin-bottom:4px;">
-                  <span style="font-weight:700; margin-right:4px;">02</span> E-manual for strategy use
-                </a>
-                <p style="margin:0; color:#6f726f; font-size:0.92rem; line-height:1.5; font-family:Inter, ui-sans-serif, system-ui, sans-serif;">An interactive e-manual guiding students on how to apply strategies for effective lecture listening.</p>
+            </li>
+            <li style="padding:0; border:1px solid var(--line, rgba(40,40,34,0.14)); border-radius:8px; background:rgba(255,254,250,0.60); margin:0 0 0.75rem 0; overflow:hidden;">
+              <div style="display:flex; align-items:stretch;">
+                <div style="width:4px; background:#47675e; flex-shrink:0;"></div>
+                <div style="padding:14px 16px; flex:1;">
+                  <a href="#" style="display:block; color:#8a6f4d; text-decoration:none; font-weight:600; line-height:1.5; font-size:1rem; font-family:'Source Serif 4', ui-serif, Georgia, 'Times New Roman', Times, serif; margin-bottom:4px;">
+                    <span style="font-weight:700; margin-right:4px;">02</span> E-manual for strategy use
+                  </a>
+                  <p style="margin:0; color:#6f726f; font-size:0.92rem; line-height:1.5; font-family:Inter, ui-sans-serif, system-ui, sans-serif;">An interactive e-manual guiding students on how to apply strategies for effective lecture listening.</p>
+                </div>
               </div>
-            </div>
-          </li>
-          <li style="padding:0; border:1px solid var(--line, rgba(40,40,34,0.14)); border-radius:8px; background:rgba(255,254,250,0.60); margin:0; overflow:hidden;">
-            <div style="display:flex; align-items:stretch;">
-              <div style="width:4px; background:#47675e; flex-shrink:0;"></div>
-              <div style="padding:14px 16px; flex:1;">
-                <a href="#" style="display:block; color:#8a6f4d; text-decoration:none; font-weight:600; line-height:1.5; font-size:1rem; font-family:'Source Serif 4', ui-serif, Georgia, 'Times New Roman', Times, serif; margin-bottom:4px;">
-                  <span style="font-weight:700; margin-right:4px;">03</span> Self-evaluation form of strategy use
-                </a>
-                <p style="margin:0; color:#6f726f; font-size:0.92rem; line-height:1.5; font-family:Inter, ui-sans-serif, system-ui, sans-serif;">A self-evaluation form for students to reflect on and assess their strategy use and progress.</p>
+            </li>
+            <li style="padding:0; border:1px solid var(--line, rgba(40,40,34,0.14)); border-radius:8px; background:rgba(255,254,250,0.60); margin:0; overflow:hidden;">
+              <div style="display:flex; align-items:stretch;">
+                <div style="width:4px; background:#47675e; flex-shrink:0;"></div>
+                <div style="padding:14px 16px; flex:1;">
+                  <a href="#" style="display:block; color:#8a6f4d; text-decoration:none; font-weight:600; line-height:1.5; font-size:1rem; font-family:'Source Serif 4', ui-serif, Georgia, 'Times New Roman', Times, serif; margin-bottom:4px;">
+                    <span style="font-weight:700; margin-right:4px;">03</span> Self-evaluation form of strategy use
+                  </a>
+                  <p style="margin:0; color:#6f726f; font-size:0.92rem; line-height:1.5; font-family:Inter, ui-sans-serif, system-ui, sans-serif;">A self-evaluation form for students to reflect on and assess their strategy use and progress.</p>
+                </div>
               </div>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </article>
 
+    <!-- 卡片5：Related Projects（折叠） -->
     <article class="grant-card grant-card-structured">
-      <h2 class="card-title-sm">Related Projects</h2>
-      <div class="grant-card-body">
-        <a href="#" class="related-project-item">
-          <div class="rp-title">Orchestrating listening in EMI university lectures: A multimodal perspective of students' strategic lecture comprehension</div>
-          <p class="rp-funder">Research Grants Council, General Research Fund</p>
-          <div class="rp-details">
-            <span>2026–2028</span>
-            <span>$489,740 HKD</span>
-          </div>
-        </a>
+      <h2 class="card-title-sm" onclick="toggleContent(this)">
+        <span>Related Projects</span>
+        <span class="topic-chevron" aria-hidden="true"></span>
+      </h2>
+      <div class="toggle-content" id="relatedProjectsContent">
+        <div class="grant-card-body">
+          <a href="#" class="related-project-item">
+            <div class="rp-title">Orchestrating listening in EMI university lectures: A multimodal perspective of students' strategic lecture comprehension</div>
+            <p class="rp-funder">Research Grants Council, General Research Fund</p>
+            <div class="rp-details">
+              <span>2026–2028</span>
+              <span>$489,740 HKD</span>
+            </div>
+          </a>
+        </div>
       </div>
     </article>
 
@@ -598,6 +643,20 @@
   </footer>
 </main>
 
+<script>
+  function toggleContent(element) {
+    const content = element.nextElementSibling;
+    const chevron = element.querySelector('.topic-chevron');
+    if (content) {
+      content.classList.toggle('open');
+    }
+    if (chevron) {
+      chevron.classList.toggle('open');
+    }
+  }
+
+  // 页面加载时所有卡片默认收起
+</script>
 <script src="assets/site.js?v=17"></script>
 </body>
 </html>
